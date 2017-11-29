@@ -1,0 +1,367 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+<META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache">
+<META HTTP-EQUIV="Expires" CONTENT="0">
+<META content="MSHTML 6.00.2900.3020" name=GENERATOR>
+<meta http-equiv="keywords" content="" />
+<title>中国银河证券股份有限公司</title>
+<link href="/trade/webtrade/css/trade.css" rel="stylesheet" type="text/css" />
+<link href="/trade/webtrade/css/sortabletable.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="/trade/webtrade/js/jquery-1.7.2.min.js"></script>
+<script type="text/javascript" src="/trade/webtrade/js/jquery.function.js"></script>
+<script type="text/javascript" src="/trade/webtrade/js/common.js"></script>
+<script type="text/javascript" src="/trade/webtrade/js/cookieManage.js"></script>
+<script type="text/javascript" src="/trade/webtrade/js/sortabletable.js" ></script>
+<script type="text/javascript" src="/trade/webtrade/js/My97DatePicker/WdatePicker.js" language="JavaScript"></script>
+<script language="javascript">
+$(document).ready(function(){
+	closeWait();
+});
+
+function outputResult(key){
+	loginForm.action = "/trade/OutputFileServlet?downType="+key;
+	loginForm.submit();
+}
+</script>
+<script type="text/javascript">
+<!--
+function setInfo(id){
+
+	//checkid(id);
+	clearother(id);
+	if(confirm('操作类别：撤单\n股票代码：'+$("#tdCode_"+id).html()+'\n股票名称：'+$("#tdName_"+id).html()+'\n委托编号：'+$("#tdOrdersno_"+id).html()+'\n股东代码：'+$("#tdSecuid_"+id).html())){
+		submitForm($("#tdOrdersno_"+id).html(),$("#tdSecuid_"+id).html());
+	}
+}
+
+function setInfos(sno,num){
+
+
+	if(confirm('操作类别：批量撤单\n委托编号：'+sno)){
+
+		showWait();
+
+		var param =new Object();
+		param.orderSno= sno;
+		param.num = num;
+		param.ajaxFlag="stock_batch_cancel";
+
+		$.ajax({
+		   type: "POST",
+		   url: "/trade/AjaxServlet",
+		   data: param,
+		   dataType: 'json',
+		   //contentType: "application/json; charset=utf-8",
+		   success: function(json){
+
+			  closeWait();
+
+			 if(json.result_type=='error'){
+
+					alert(json.result_msg);
+			 }else if(json.ER_String!=null){
+
+				  alert(json.ER_String);
+
+			 }else{
+
+				 alert('失败：'+json.failed+'，成功：'+json.success);
+
+				 location.reload();
+
+			 }
+
+		   },
+		   error:function(){
+
+			alert('error');
+		   }
+		});
+	}
+
+}
+
+function cancelBill(){
+
+
+}
+
+function checkForm(){
+
+	var i =0;
+	var tmp_value = "";
+	var tmp_sno = "";
+	$("[name='sno']").each(function(){
+
+
+		if($(this).attr("checked")){
+
+			i++;
+
+			tmp_value = $(this).val();
+
+			tmp_sno = tmp_sno+ $("#tdOrdersno_"+tmp_value).html()+",";
+		}
+
+	});
+	if(i==0){
+		alert('请选择需要撤单的委托单！');
+		return false;
+	}else if(i>1){
+
+		setInfos(tmp_sno,i);
+	}else{
+
+		setInfo(tmp_value);
+	}
+
+
+}
+
+
+function test(){
+	return false;
+}
+
+function selectAll(){
+
+	if($("#select_All").attr("checked")){
+		$("[name='sno']").attr("checked",true);
+	}else{
+
+		$("[name='sno']").removeAttr("checked");
+	}
+}
+
+function submitForm(sno,secuid){
+	/**
+			String code = CommonMethod.transferNull(request.getParameter("stockCode"));
+			String name = CommonMethod.transferNull(request.getParameter("stockName"));
+
+			String price = request.getParameter("price")==null?"0":request.getParameter("price");
+			String qty = CommonMethod.transferNull(request.getParameter("qty"));
+			String market = CommonMethod.transferNull(request.getParameter("market"));
+			String secuid = CommonMethod.transferNull(request.getParameter("secuid"));
+			String autoflag = CommonMethod.transferNull(request.getParameter("autoflag"));
+			String enddate = CommonMethod.transferNull(request.getParameter("enddate"));
+	**/
+
+	showWait();
+
+	var orderSno = sno;
+	var secuid = secuid;
+
+	var param =new Object();
+	param.orderSno= orderSno;
+	param.secuid = secuid;
+	param.ajaxFlag="stock_cancel";
+
+	$.ajax({
+	   type: "POST",
+	   url: "/trade/AjaxServlet",
+	   data: param,
+	   dataType: 'json',
+	   //contentType: "application/json; charset=utf-8",
+	   success: function(json){
+
+		  closeWait();
+
+		 if(json.result_type=='error'){
+
+				alert(json.result_msg);
+		 }else if(json.ER_String!=null){
+
+			  alert(json.ER_String);
+
+		 }else{
+
+			 alert(json.msgok);
+
+			 location.reload();
+
+		 }
+
+
+	   },
+	   error:function(){
+
+		alert('error');
+	   }
+	});
+
+
+}
+
+
+
+//-->
+</script>
+</head>
+
+
+<body class="rightbody">
+<form id="loginForm" action="stock_jgd_query.jsp" method="post" onsubmit="return query();">
+<table border="0" align="center" cellpadding="0" cellspacing="0" class="search">
+  <tr>
+    <!--<td width="400"><table border="0" cellpadding="0" cellspacing="0">
+  <tr>
+    <td width="60">起始日期：</td>
+    <td width="99"><input name="" type="text" class="search_input" value="2012-04-10"></td>
+    <td width="40"><a href="#"><img src="../pic/icon_date.jpg"></a></td>
+    <td width="60">终止日期：</td>
+    <td width="99"><input name="" type="text" class="search_input" value="2012-04-10"></td>
+    <td width="40"><a href="#"><img src="../pic/icon_date.jpg"></a></td>
+  </tr>
+</table></td>-->
+    <td><table border="0" cellspacing="0" cellpadding="0" class="search_btn">
+      <tr>
+        <td class="search_btn_search4"><a href="#" onclick="checkForm()">撤单</a></td>
+        <!--td class="search_btn_search3"><a href="#">刷新</a></td-->
+      </tr>
+    </table></td>
+    <td align="right"><table border="0" cellspacing="0" cellpadding="0" class="search_btn">
+      <tr>
+        <td>共&nbsp;1&nbsp;条</td>
+        <td class="search_btn_search3"><a href="#" onClick="outputResult('excel');">Excel导出</a></td>
+        <td class="search_btn_search3"><a href="#" onClick="outputResult('txt');">Txt导出</a></td>
+      </tr>
+    </table></td>
+  </tr>
+</table>
+<table align="center" border="0" cellspacing="0" cellpadding="0" class="t_table">
+  <tr>
+    <td><table border="0" cellspacing="0" cellpadding="0" align="center" class="t_table_title">
+  <tr>
+    <td width="9"><img src="../pic/table_title_left.jpg" /></td>
+    <td class="title">委托撤单</td>
+    <td width="9" align="center"><img src="../pic/table_title_right.jpg" /></td>
+  </tr>
+</table>
+
+
+<table border="0" cellspacing="0" cellpadding="0" align="center" class="t_table_mid">
+  <tr>
+    <td class="left"></td>
+    <td><table id="dataTable" width="100%" border="0" align="center" cellpadding="0" cellspacing="0" class="fee">
+	<THEAD>
+      <tr>
+
+			<td nowrap="nowrap" class="head"><input type="checkbox" id="select_All" onclick="selectAll()"></td>
+			<td nowrap="nowrap" class="head">委托时间</td>
+			<td nowrap="nowrap" class="head">证券代码</td>
+			<td nowrap="nowrap" class="head">证券名称</td>
+			<td nowrap="nowrap" class="head">状态说明</td>
+			<td nowrap="nowrap" class="head">买卖标志</td>
+			<td nowrap="nowrap" class="head">委托价格</td>
+			<td nowrap="nowrap" class="head">委托数量</td>
+			<td nowrap="nowrap" class="head">委托编号</td>
+			<td nowrap="nowrap" class="head">成交数量</td>
+			<td nowrap="nowrap" class="head">撤单数量</td>
+			<td nowrap="nowrap" class="head">股东代码</td>
+			<td nowrap="nowrap" class="head">资金账号</td>
+			<td nowrap="nowrap" class="head_last">摘要</td>
+      </tr>
+	</THEAD>
+	<TBODY>
+
+
+			<tr ondblclick="setInfo('1')" onclick="checkid('1')">
+				<td ><input type="checkbox" name="sno" value="1" id="checktr_1" onclick="checkid('1')"></td>
+				<!--<td ></td>-->
+				<td >08:47:50</td>
+				<td id="tdCode_1">150236</td>
+				<td id="tdName_1">券商B级</td>
+				<td >已报</td>
+				<td >卖出</td>
+				<td >.383</td>
+				<td >2000</td>
+				<td id="tdOrdersno_1">7340</td>
+				<td >0</td>
+				<td >0</td>
+				<td id="tdSecuid_1">0163212820</td>
+				<td >10100074075</td>
+				<td ></td>
+
+			</tr>
+
+		</TBODY>
+    </table></td>
+    <td class="right"></td>
+  </tr>
+</table>
+
+			<script type=text/javascript>
+				$(function(){
+					var sortArray = new Array();
+					$.each($("#dataTable tbody tr:first td"), function(i, n){
+						if(i==0){
+							sortArray.push("None");
+						}else{
+							var content = $(n).text();
+							if (isNaN(content)) {
+								sortArray.push("String");
+							} else {
+								sortArray.push("Number");
+							}
+						}
+					});
+					var st = new SortableTable(document.getElementById("dataTable"), sortArray);
+					jQuery(function($) {
+						$("a").each(
+							function(){
+								$(this).attr("href",encodeURI($(this).attr("href")));
+							}
+						);
+					});
+				});
+			</script>
+
+<table border="0" cellspacing="0" cellpadding="0" align="center" class="t_table_bottom">
+  <tr>
+    <td width="9"><img src="../pic/table_bottom_left.jpg" /></td>
+    <td class="mid">&nbsp;</td>
+    <td width="9" align="center"><img src="../pic/table_bottom_right.jpg" /></td>
+  </tr>
+</table></td>
+  </tr>
+</table>
+</form>
+</body>
+</html>
+
+
+
+
+
+<script language="javascript">
+
+</script>

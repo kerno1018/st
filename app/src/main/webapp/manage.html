@@ -1,0 +1,75 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <head>
+        <title>add</title>
+        <link rel="stylesheet" href="/stock/css/bootstrap.min.css">
+        <!-- 可选的Bootstrap主题文件（一般不用引入） -->
+        <link rel="stylesheet" href="/stock/css/bootstrap-theme.min.css">
+        <link href="/stock/css/jquery.dataTables.css" rel="stylesheet">
+        <link href="/stock/css/bootstrap-datetimepicker.css" rel="stylesheet">
+        <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+        <script src="/stock/common/jquery.min.js"></script>
+        <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+        <script src="/stock/common/bootstrap.min.js"></script>
+        <script type="text/javascript" src="/stock/common/jquery-tmpl.js"></script>
+        <script type="text/javascript" src="/stock/common/knockout.debug.js"></script>
+        <script type="text/javascript" src="/stock/common/koExternalTemplateEngine_all.js"></script>
+        <script type="text/javascript" src="/stock/common/jquery.dataTables.min.js"></script>
+        <script type="text/javascript" src="/stock/common/moment.js"></script>
+        <script type="text/javascript" src="/stock/common/bootstrap-datetimepicker.min.js"></script>
+        <script type="text/javascript" src="/stock/common/bootstrap-notify.js"></script>
+        <script type="text/javascript" src="/stock/js/account.js"></script>
+        <script type="text/javascript" src="/stock/js/manage.js"></script>
+        <script type="text/javascript" src="/stock/js/log.js"></script>
+        <script type="text/javascript" src="/stock/js/deallog.js"></script>
+        <script type="text/javascript" src="/stock/js/square.js"></script>
+        <script type="text/javascript" src="/stock/js/grid.js"></script>
+        <script type="text/javascript" src="/stock/js/autoOrder.js"></script>
+        <script type="text/javascript" src="/stock/js/admin.js"></script>
+        <script type="text/javascript" src="/stock/js/pickmoney.js"></script>
+        <script type="text/javascript" src="/stock/js/fluctuate.js"></script>
+        <script type="text/javascript" src="/stock/js/monthtomonth.js"></script>
+    </head>
+</head>
+<body>
+
+<!-- Indicates a successful or positive action -->
+<button type="button" data-bind="css:buttonStyle(),click:showPersonalInfo">个人信息</button>
+
+<!-- Contextual button for informational alert messages -->
+<button type="button" class="btn btn-info" data-bind="click:showLogInfo">Count Log</button>
+<button type="button" class="btn btn-info" data-bind="click:showPickInfo">Pick Money Log</button>
+
+<button type="button" class="btn btn-info" data-bind="click:showDealLogInfo">Deal Log</button>
+
+<!-- Indicates caution should be taken with this action -->
+<button type="button" class="btn btn-info" data-bind="click:showSquareInfo">Deal Square</button>
+
+<!-- Indicates a dangerous or potentially negative action -->
+<button type="button" class="btn btn-danger" data-bind="click:showGridInfo">Grid</button>
+
+<!-- Indicates a dangerous or potentially negative action -->
+<button type="button" class="btn btn-danger" data-bind="click:showAutoSellInfo">AutoBuy</button>
+
+<button type="button" class="btn btn-danger" data-bind="click:showConfigInfo">配置</button>
+
+<button type="button" class="btn btn-danger" data-bind="click:showFluctuateInfo">指数涨幅统计</button>
+
+<button type="button" class="btn btn-danger" data-bind="click:showMonthInfo">股票涨幅统计</button>
+
+
+<div data-bind="template: { name: 'account',data:account }"></div>
+<div data-bind="template: { name: 'log',data:logStatistic }"></div>
+<div data-bind="template: { name: 'deallog',data:dealLog }"></div>
+<div data-bind="template: { name: 'square',data:square }"></div>
+<div data-bind="template: { name: 'pickmoney',data:pickmoney }"></div>
+<div data-bind="template: { name: 'grid',data:grid }"></div>
+<div data-bind="template: { name: 'autoOrder',data:autoOrder }"></div>
+<div data-bind="template: { name: 'admin',data:config }"></div>
+<div data-bind="template: { name: 'fluctuate',data:fluctuate }"></div>
+<div data-bind="template: { name: 'month',data:month }"></div>
+
+</body>
+</html>

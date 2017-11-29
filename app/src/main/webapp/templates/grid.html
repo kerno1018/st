@@ -1,0 +1,52 @@
+<div class="modal fade" id="grid" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="Stock">Stock</label>
+                    <input type="text" class="form-control" id="Stock" data-bind="value: grid.stock" placeholder="STOCK">
+                </div>
+                <div class="form-group">
+                    <label for="BuyPrice">BuyPrice</label>
+                    <input type="text" class="form-control" id="BuyPrice" data-bind="value: grid.buyPrice" placeholder="Buy Price">
+                </div>
+                <div class="form-group">
+                    <label for="SellPrice">SellPrice</label>
+                    <input type="text" class="form-control" id="SellPrice" data-bind="value: grid.sellPrice" placeholder="Sell Price">
+                </div>
+                <div class="form-group">
+                    <label for="OperateNum">OperateNum</label>
+                    <input type="text" class="form-control" id="OperateNum" data-bind="value: grid.operateNum" placeholder="Sell or Buy Volume">
+                </div>
+                <div class="form-group">
+                    <button type="button" class="btn btn-primary" data-bind="click:saveOrUpdate">Save</button>
+                </div>
+                <div class="form-group">
+                <table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered dataTable" id="gridTables">
+                    <thead>
+                    <tr>
+                        <th data-field="id" data-checkbox="true"></th>
+                        <th>Stock</th>
+                        <th>SellPrice</th>
+                        <th>BuyPrice</th>
+                        <th>OperateNum</th>
+                        <th>Enable</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" data-bind="click:deletes">Delete</button>
+            </div>
+        </div>
+    </div>
+</div>

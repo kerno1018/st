@@ -1,0 +1,44 @@
+<div class="modal fade" id="config" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+            </div>
+            <div class="modal-body">
+                <form class="form-horizontal">
+                    <div class="form-group">
+                        <label for="Premium" class="col-sm-2 control-label">Premium</label>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control" data-bind="value:config.premium" id="Premium" placeholder="preminum">
+                        </div>
+                        <button type="button" class="btn btn-default"  data-bind="click:updatePremium">update</button>
+                    </div>
+                    <div class="form-group">
+                        <label for="OperateMoney" class="col-sm-2 control-label">Operate Money</label>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control" id="OperateMoney" data-bind="value:config.operateMoney" placeholder="operate money">
+                        </div>
+                        <button type="button" class="btn btn-default"  data-bind="click:updateOperateMoney">update</button>
+                    </div>
+                    <div class="form-group">
+                        <label for="Strategy" class="col-sm-2 control-label">Strategy</label>
+                        <div class="col-sm-8">
+                            <select id="Strategy" data-bind="value:config.strategy" class="form-control">
+                                <option value="1">1.0-AB</option>
+                                <option value="5">1.0-ConcurrentAB</option>
+                                <option value="2">1.0-B</option>
+                                <option value="3">2.0-AB</option>
+                                <option value="4">2.0-B</option>
+                            </select>
+                        </div>
+                        <button type="button" class="btn btn-default" data-bind="click:updateStrategy">update</button>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
